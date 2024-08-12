@@ -41,19 +41,223 @@ public class TicTacToe implements ActionListener {
         // coordinates where to start
         title_panel.setBounds(0,0,800,100);
 
+        // match the amount of buttons we have, 9
+        button_panel.setLayout(new GridLayout(3,3));
+        button_panel.setBackground(new Color(150,150,150));
+
+        // traverse through buttons
+        for (int i = 0; i < 9; i++){
+            buttons[i] = new JButton();
+
+            // add button at current index
+            button_panel.add(buttons[i]);
+            buttons[i].setFont(new Font("MV Boli",Font.BOLD,120));
+
+            // make buttons not focusable
+            buttons[i].setFocusPainted(false);
+            buttons[i].addActionListener(this);
+        }
+
         title_panel.add(text_field);
         frame.add(title_panel, BorderLayout.NORTH);
+        frame.add(button_panel);
+
+        firstTurn();
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // run 9 times when a button is clicked
+        for (int i = 0; i < 9; i++){
+            if (e.getSource() == buttons[i]){
+                // already a boolean value/ no need to set it to a condition
+                if (player1_turn){
+
+                    // check to see if any text is assigned to the button
+
+                    // Player clicked button displays X then moves to "O turn"
+                    if(buttons[i].getText() == ""){
+                        buttons[i].setForeground(new Color(255,0,0));
+                        buttons[i].setText("X");
+                        player1_turn = false;
+                        text_field.setText("O turn");
+                        check();
+                    }
+                }
+                // Player clicked button displays O then moves to "X turn"
+                else {
+                    if(buttons[i].getText() == ""){
+                        buttons[i].setForeground(new Color(0,0,255));
+                        buttons[i].setText("O");
+                        player1_turn = true;
+                        text_field.setText("X turn");
+                        check();
+                    }
+                }
+
+            }
+        }
 
     }
+
     public void firstTurn(){
+        // add a delay before assigning a turn
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        // getting two random number 0 or 1
+        if(random.nextInt(2) == 0){
+
+            player1_turn = true;
+            text_field.setText("X turn");
+        }
+        else {
+            player1_turn = false;
+            text_field.setText("O turn");
+        }
 
     }
     public void check(){
+        // check X win conditions
+             if(
+                        (buttons[0].getText() == "X") &&
+                        (buttons[1].getText() == "X") &&
+                        (buttons[2].getText() == "X")
+        ){
+            // winning combination
+            xWins(0,1,2);
+        }
+        if(
+                        (buttons[3].getText() == "X") &&
+                        (buttons[4].getText() == "X") &&
+                        (buttons[5].getText() == "X")
+        ){
+            // winning combination
+            xWins(3,4,5);
+        }
+        if(
+                        (buttons[6].getText() == "X") &&
+                        (buttons[7].getText() == "X") &&
+                        (buttons[8].getText() == "X")
+        ){
+            // winning combination
+            xWins(6,7,8);
+        }
+
+        if(
+                        (buttons[0].getText() == "X") &&
+                        (buttons[3].getText() == "X") &&
+                        (buttons[6].getText() == "X")
+        ){
+            // winning combination
+            xWins(0,3,3);
+        }
+        if(
+                        (buttons[1].getText() == "X") &&
+                        (buttons[4].getText() == "X") &&
+                        (buttons[7].getText() == "X")
+        ){
+            // winning combination
+            xWins(1,4,7);
+        }
+        if(
+                        (buttons[2].getText() == "X") &&
+                        (buttons[5].getText() == "X") &&
+                        (buttons[8].getText() == "X")
+        ){
+            // winning combination
+            xWins(2,5,8);
+        }
+
+        if(
+                        (buttons[0].getText() == "X") &&
+                        (buttons[4].getText() == "X") &&
+                        (buttons[8].getText() == "X")
+        ){
+            // winning combination
+            xWins(0,4,8);
+        }
+        if(
+                        (buttons[2].getText() == "X") &&
+                        (buttons[4].getText() == "X") &&
+                        (buttons[6].getText() == "X")
+        ){
+            // winning combination
+            xWins(2,4,6);
+        }
+
+        // check O win conditions
+
+        if(
+                        (buttons[0].getText() == "X") &&
+                        (buttons[1].getText() == "X") &&
+                        (buttons[2].getText() == "X")
+        ){
+            // winning combination
+            oWins(0,1,2);
+        }
+        if(
+                        (buttons[3].getText() == "X") &&
+                        (buttons[4].getText() == "X") &&
+                        (buttons[5].getText() == "X")
+        ){
+            // winning combination
+            oWins(3,4,5);
+        }
+        if(
+                        (buttons[6].getText() == "X") &&
+                        (buttons[7].getText() == "X") &&
+                        (buttons[8].getText() == "X")
+        ){
+            // winning combination
+            oWins(6,7,8);
+        }
+
+        if(
+                        (buttons[0].getText() == "X") &&
+                        (buttons[3].getText() == "X") &&
+                        (buttons[6].getText() == "X")
+        ){
+            // winning combination
+            oWins(0,3,3);
+        }
+        if(
+                        (buttons[1].getText() == "X") &&
+                        (buttons[4].getText() == "X") &&
+                        (buttons[7].getText() == "X")
+        ){
+            // winning combination
+            oWins(1,4,7);
+        }
+        if(
+                        (buttons[2].getText() == "X") &&
+                        (buttons[5].getText() == "X") &&
+                        (buttons[8].getText() == "X")
+        ){
+            // winning combination
+            oWins(2,5,8);
+        }
+
+        if(
+                        (buttons[0].getText() == "X") &&
+                        (buttons[4].getText() == "X") &&
+                        (buttons[8].getText() == "X")
+        ){
+            // winning combination
+            oWins(0,4,8);
+        }
+        if(
+                        (buttons[2].getText() == "O") &&
+                        (buttons[4].getText() == "O") &&
+                        (buttons[6].getText() == "O")
+        ){
+            // winning combination
+            oWins(2,4,6);
+        }
 
     }
     // what buttons were pressed for the user to result in winning
