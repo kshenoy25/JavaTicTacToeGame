@@ -193,59 +193,59 @@ public class TicTacToe implements ActionListener {
         // check O win conditions
 
         if(
-                        (buttons[0].getText() == "X") &&
-                        (buttons[1].getText() == "X") &&
-                        (buttons[2].getText() == "X")
+                        (buttons[0].getText() == "O") &&
+                        (buttons[1].getText() == "O") &&
+                        (buttons[2].getText() == "O")
         ){
             // winning combination
             oWins(0,1,2);
         }
         if(
-                        (buttons[3].getText() == "X") &&
-                        (buttons[4].getText() == "X") &&
-                        (buttons[5].getText() == "X")
+                        (buttons[3].getText() == "O") &&
+                        (buttons[4].getText() == "O") &&
+                        (buttons[5].getText() == "O")
         ){
             // winning combination
             oWins(3,4,5);
         }
         if(
-                        (buttons[6].getText() == "X") &&
-                        (buttons[7].getText() == "X") &&
-                        (buttons[8].getText() == "X")
+                        (buttons[6].getText() == "O") &&
+                        (buttons[7].getText() == "O") &&
+                        (buttons[8].getText() == "O")
         ){
             // winning combination
             oWins(6,7,8);
         }
 
         if(
-                        (buttons[0].getText() == "X") &&
-                        (buttons[3].getText() == "X") &&
-                        (buttons[6].getText() == "X")
+                        (buttons[0].getText() == "O") &&
+                        (buttons[3].getText() == "O") &&
+                        (buttons[6].getText() == "O")
         ){
             // winning combination
             oWins(0,3,3);
         }
         if(
-                        (buttons[1].getText() == "X") &&
-                        (buttons[4].getText() == "X") &&
-                        (buttons[7].getText() == "X")
+                        (buttons[1].getText() == "O") &&
+                        (buttons[4].getText() == "O") &&
+                        (buttons[7].getText() == "O")
         ){
             // winning combination
             oWins(1,4,7);
         }
         if(
-                        (buttons[2].getText() == "X") &&
-                        (buttons[5].getText() == "X") &&
-                        (buttons[8].getText() == "X")
+                        (buttons[2].getText() == "O") &&
+                        (buttons[5].getText() == "O") &&
+                        (buttons[8].getText() == "O")
         ){
             // winning combination
             oWins(2,5,8);
         }
 
         if(
-                        (buttons[0].getText() == "X") &&
-                        (buttons[4].getText() == "X") &&
-                        (buttons[8].getText() == "X")
+                        (buttons[0].getText() == "O") &&
+                        (buttons[4].getText() == "O") &&
+                        (buttons[8].getText() == "O")
         ){
             // winning combination
             oWins(0,4,8);
@@ -262,11 +262,31 @@ public class TicTacToe implements ActionListener {
     }
     // what buttons were pressed for the user to result in winning
     public void xWins(int a , int b, int c){
+        buttons[a].setBackground(Color.GREEN);
+        buttons[b].setBackground(Color.GREEN);
+        buttons[c].setBackground(Color.GREEN);
+
+        // disable all buttons so people cannot keep playing
+        for (int i = 0; i < 9; i++){
+            buttons[i].setEnabled(false);
+        }
+        text_field.setText("X wins! Booya!");
 
     }
     public void oWins(int a , int b, int c){
 
+        buttons[a].setBackground(Color.GREEN);
+        buttons[b].setBackground(Color.GREEN);
+        buttons[c].setBackground(Color.GREEN);
+
+        // disable all buttons so people cannot keep playing
+        for (int i = 0; i < 9; i++){
+            buttons[i].setEnabled(false);
+        }
+        text_field.setText("O is a Winner Winner Chicken Dinner!");
+
     }
 }
+
 
 
