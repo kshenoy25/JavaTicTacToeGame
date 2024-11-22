@@ -3,6 +3,7 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 public class TicTacToe implements ActionListener {
+    //  ActionListener is an interface that allows you to handle events triggered by user actions, such as clicking a button or selecting a menu item
 
     Random random = new Random();
     JFrame frame = new JFrame();
